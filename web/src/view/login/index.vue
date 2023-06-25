@@ -3,68 +3,29 @@
     <div class="login_panel">
       <div class="login_panel_form">
         <div class="login_panel_form_title">
-          <img
-            class="login_panel_form_title_logo"
-            :src="$GIN_VUE_ADMIN.appLogo"
-            alt
-          >
+          <img class="login_panel_form_title_logo" :src="$GIN_VUE_ADMIN.appLogo" alt>
           <p class="login_panel_form_title_p">{{ $GIN_VUE_ADMIN.appName }}</p>
         </div>
-        <el-form
-          ref="loginForm"
-          :model="loginFormData"
-          :rules="rules"
-          :validate-on-rule-change="false"
-          @keyup.enter="submitForm"
-        >
+        <el-form ref="loginForm" :model="loginFormData" :rules="rules" :validate-on-rule-change="false"
+          @keyup.enter="submitForm">
           <el-form-item prop="username">
-            <el-input
-              v-model="loginFormData.username"
-              size="large"
-              placeholder="请输入用户名"
-              suffix-icon="user"
-            />
+            <el-input v-model="loginFormData.username" size="large" placeholder="请输入用户名" suffix-icon="user" />
           </el-form-item>
           <el-form-item prop="password">
-            <el-input
-              v-model="loginFormData.password"
-              show-password
-              size="large"
-              type="password"
-              placeholder="请输入密码"
-            />
+            <el-input v-model="loginFormData.password" show-password size="large" type="password" placeholder="请输入密码" />
           </el-form-item>
           <el-form-item v-if="loginFormData.openCaptcha" prop="captcha">
             <div class="vPicBox">
-              <el-input
-                v-model="loginFormData.captcha"
-                placeholder="请输入验证码"
-                size="large"
-                style="flex:1;padding-right: 20px;"
-              />
+              <el-input v-model="loginFormData.captcha" placeholder="请输入验证码" size="large"
+                style="flex:1;padding-right: 20px;" />
               <div class="vPic">
-                <img
-                  v-if="picPath"
-                  :src="picPath"
-                  alt="请输入验证码"
-                  @click="loginVerify()"
-                >
+                <img v-if="picPath" :src="picPath" alt="请输入验证码" @click="loginVerify()">
               </div>
             </div>
           </el-form-item>
           <el-form-item>
-            <el-button
-              type="primary"
-              style="width: 46%"
-              size="large"
-              @click="checkInit"
-            >前往初始化</el-button>
-            <el-button
-              type="primary"
-              size="large"
-              style="width: 46%; margin-left: 8%"
-              @click="submitForm"
-            >登 录</el-button>
+            <el-button type="primary" style="width: 46%" size="large" @click="checkInit">前往初始化</el-button>
+            <el-button type="primary" size="large" style="width: 46%; margin-left: 8%" @click="submitForm">登 录</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -77,18 +38,12 @@
           <a href="https://support.qq.com/product/371961" target="_blank">
             <img src="@/assets/kefu.png" class="link-icon" alt="客服">
           </a>
-          <a
-            href="https://github.com/flipped-aurora/gin-vue-admin"
-            target="_blank"
-          >
+          <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">
             <img src="@/assets/github.png" class="link-icon" alt="github">
           </a>
           <a href="https://space.bilibili.com/322210472" target="_blank">
             <img src="@/assets/video.png" class="link-icon" alt="视频站">
           </a>
-        </div>
-        <div class="copyright">
-          <BottomInfo />
         </div>
       </div>
     </div>
@@ -104,7 +59,6 @@ export default {
 <script setup>
 import { captcha } from '@/api/user'
 import { checkDB } from '@/api/initdb'
-import BottomInfo from '@/view/layout/bottomInfo/bottomInfo.vue'
 import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
@@ -128,7 +82,7 @@ const checkPassword = (rule, value, callback) => {
 
 // 获取验证码
 const loginVerify = () => {
-  captcha({}).then(async(ele) => {
+  captcha({}).then(async (ele) => {
     rules.captcha.push({
       max: ele.data.captchaLength,
       min: ele.data.captchaLength,
@@ -164,11 +118,11 @@ const rules = reactive({
 })
 
 const userStore = useUserStore()
-const login = async() => {
+const login = async () => {
   return await userStore.LoginIn(loginFormData)
 }
 const submitForm = () => {
-  loginForm.value.validate(async(v) => {
+  loginForm.value.validate(async (v) => {
     if (v) {
       const flag = await login()
       if (!flag) {
@@ -187,7 +141,7 @@ const submitForm = () => {
 }
 
 // 跳转初始化
-const checkInit = async() => {
+const checkInit = async () => {
   const res = await checkDB()
   if (res.code === 0) {
     if (res.data?.needInit) {

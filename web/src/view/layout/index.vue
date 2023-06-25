@@ -1,21 +1,18 @@
 <template>
   <el-container class="layout-cont">
-    <el-container :class="[isSider?'openside':'hideside',isMobile ? 'mobile': '']">
-      <el-row :class="[isShadowBg?'shadowBg':'']" @click="changeShadow()" />
+    <el-container :class="[isSider ? 'openside' : 'hideside', isMobile ? 'mobile' : '']">
+      <el-row :class="[isShadowBg ? 'shadowBg' : '']" @click="changeShadow()" />
       <el-aside class="main-cont main-left gva-aside">
-        <div class="tilte" :style="{background: backgroundColor}">
+        <div class="tilte" :style="{ background: backgroundColor }">
           <img alt class="logoimg" :src="$GIN_VUE_ADMIN.appLogo">
-          <div v-if="isSider" class="tit-text" :style="{color:textColor}">{{ $GIN_VUE_ADMIN.appName }}</div>
+          <div v-if="isSider" class="tit-text" :style="{ color: textColor }">{{ $GIN_VUE_ADMIN.appName }}</div>
         </div>
         <Aside class="aside" />
       </el-aside>
       <!-- 分块滑动功能 -->
       <el-main class="main-cont main-right">
         <transition :duration="{ enter: 800, leave: 100 }" mode="out-in" name="el-fade-in-linear">
-          <div
-            :style="{width: `calc(100% - ${isMobile?'0px':isCollapse?'54px':'220px'})`}"
-            class="topfix"
-          >
+          <div :style="{ width: `calc(100% - ${isMobile ? '0px' : isCollapse ? '54px' : '220px'})` }" class="topfix">
             <el-row>
               <el-col>
                 <el-header class="header-cont">
@@ -29,10 +26,8 @@
                     <el-col :xs="10" :lg="14" :md="14" :sm="9" :xl="14" :pull="1">
                       <!-- 修改为手机端不显示顶部标签 -->
                       <el-breadcrumb v-show="!isMobile" class="breadcrumb">
-                        <el-breadcrumb-item
-                          v-for="item in matched.slice(1,matched.length)"
-                          :key="item.path"
-                        >{{ fmtTitle(item.meta.title,route) }}</el-breadcrumb-item>
+                        <el-breadcrumb-item v-for="item in matched.slice(1, matched.length)" :key="item.path">{{
+                          fmtTitle(item.meta.title, route) }}</el-breadcrumb-item>
                       </el-breadcrumb>
                     </el-col>
                     <el-col :xs="12" :lg="9" :md="9" :sm="14" :xl="9">
@@ -56,7 +51,9 @@
                                 </span>
                               </el-dropdown-item>
                               <template v-if="userStore.userInfo.authorities">
-                                <el-dropdown-item v-for="item in userStore.userInfo.authorities.filter(i=>i.authorityId!==userStore.userInfo.authorityId)" :key="item.authorityId" @click="changeUserAuth(item.authorityId)">
+                                <el-dropdown-item
+                                  v-for="item in userStore.userInfo.authorities.filter(i => i.authorityId !== userStore.userInfo.authorityId)"
+                                  :key="item.authorityId" @click="changeUserAuth(item.authorityId)">
                                   <span>
                                     切换为：{{ item.authorityName }}
                                   </span>
@@ -89,13 +86,8 @@
             <HistoryComponent ref="layoutHistoryComponent" />
           </div>
         </transition>
-        <router-view
-          v-if="reloadFlag"
-          v-slot="{ Component }"
-          v-loading="loadingFlag"
-          element-loading-text="正在加载中"
-          class="admin-box"
-        >
+        <router-view v-if="reloadFlag" v-slot="{ Component }" v-loading="loadingFlag" element-loading-text="正在加载中"
+          class="admin-box">
           <div>
             <transition mode="out-in" name="el-fade-in-linear">
               <keep-alive :include="routerStore.keepAliveRouters">
@@ -104,9 +96,8 @@
             </transition>
           </div>
         </router-view>
-        <BottomInfo />
         <setting />
-        <CommandMenu ref="command"/>
+        <CommandMenu ref="command" />
       </el-main>
     </el-container>
 
@@ -123,7 +114,6 @@ export default {
 import Aside from '@/view/layout/aside/index.vue'
 import HistoryComponent from '@/view/layout/aside/historyComponent/history.vue'
 import Search from '@/view/layout/search/search.vue'
-import BottomInfo from '@/view/layout/bottomInfo/bottomInfo.vue'
 import CustomPic from '@/components/customPic/index.vue'
 import CommandMenu from '@/components/commandMenu/index.vue'
 import Setting from './setting/index.vue'
@@ -147,7 +137,7 @@ const first = ref('')
 const dialogVisible = ref(false)
 const initPage = () => {
   // 判断当前用户的操作系统
-  if(window.localStorage.getItem('osType') === 'WIN') {
+  if (window.localStorage.getItem('osType') === 'WIN') {
     first.value = 'Ctrl'
   } else {
     first.value = '⌘'
@@ -162,7 +152,7 @@ const initPage = () => {
   }
   window.addEventListener('keydown', handleKeyDown);
 
-    const screenWidth = document.body.clientWidth
+  const screenWidth = document.body.clientWidth
   if (screenWidth < 1000) {
     isMobile.value = true
     isSider.value = false
@@ -233,7 +223,7 @@ const backgroundColor = computed(() => {
 
 const matched = computed(() => route.meta.matched)
 
-const changeUserAuth = async(id) => {
+const changeUserAuth = async (id) => {
   const res = await setUserAuthority({
     authorityId: id
   })
@@ -245,18 +235,18 @@ const changeUserAuth = async(id) => {
 
 const reloadFlag = ref(true)
 let reloadTimer = null
-const reload = async() => {
+const reload = async () => {
   if (reloadTimer) {
     window.clearTimeout(reloadTimer)
   }
-  reloadTimer = window.setTimeout(async() => {
+  reloadTimer = window.setTimeout(async () => {
     if (route.meta.keepAlive) {
       reloadFlag.value = false
       await nextTick()
       reloadFlag.value = true
     } else {
       const title = route.meta.title
-      router.push({ name: 'Reload', params: { title }})
+      router.push({ name: 'Reload', params: { title } })
     }
   }, 400)
 }
@@ -281,20 +271,21 @@ const changeShadow = () => {
 
 <style lang="scss">
 @import '@/style/mobile.scss';
+
 .button {
   font-size: 12px;
   color: #666;
-  background:	rgb(250,250,250);
-  width: 25px!important;
+  background: rgb(250, 250, 250);
+  width: 25px !important;
   padding: 4px 8px !important;
   border: 1px solid #eaeaea;
   margin-right: 4px;
   border-radius: 4px;
 }
-:deep .el-overlay {
-  background-color: hsla(0,0%,100%,.9) !important;
-}
-.command-box{
 
+:deep .el-overlay {
+  background-color: hsla(0, 0%, 100%, .9) !important;
 }
+
+.command-box {}
 </style>
