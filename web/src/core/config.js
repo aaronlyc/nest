@@ -3,14 +3,14 @@
  */
 
 const config = {
-  appName: 'Gin-Vue-Admin',
-  appLogo: 'https://www.gin-vue-admin.com/img/logo.png',
+  appName: 'AppNest',
+  appLogo: '',
   showViteLogo: true
 }
 
 export const viteLogo = (env) => {
   if (config.showViteLogo) {
-    const chalk = require('chalk')
+    // const chalk = require('chalk')
     // console.log(
     //   chalk.green(
     //     `> 欢迎使用Gin-Vue-Admin，开源地址：https://github.com/flipped-aurora/gin-vue-admin`

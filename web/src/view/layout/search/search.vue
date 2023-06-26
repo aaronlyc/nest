@@ -1,19 +1,10 @@
 <template>
   <div class="search-component">
-    <div
-      class="user-box"
-    >
+    <div class="user-box">
       <div class="gvaIcon gvaIcon-refresh" :class="[reload ? 'reloading' : '']" @click="handleReload" />
     </div>
-    <div
-      class="user-box"
-    >
-      <Screenfull class="search-icon" :style="{cursor:'pointer'}" />
-    </div>
-    <div
-      class="user-box"
-    >
-      <div class="service gvaIcon-customer-service" @click="toService" />
+    <div class="user-box">
+      <Screenfull class="search-icon" :style="{ cursor: 'pointer' }" />
     </div>
   </div>
 </template>
@@ -35,9 +26,6 @@ const handleReload = () => {
   setTimeout(() => {
     reload.value = false
   }, 500)
-}
-const toService = () => {
-  window.open('https://support.qq.com/product/371961')
 }
 
 </script>
@@ -69,8 +57,8 @@ const toService = () => {
   }
 }
 
-.reloading{
-  animation:turn 0.5s linear infinite;
+.reloading {
+  animation: turn 0.5s linear infinite;
 }
 
 @keyframes turn {
