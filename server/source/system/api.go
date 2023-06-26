@@ -165,13 +165,13 @@ func (i *initApi) InitializeData(ctx context.Context) (context.Context, error) {
 }
 
 func (i *initApi) DataInserted(ctx context.Context) bool {
-	db, ok := ctx.Value("db").(*gorm.DB)
-	if !ok {
-		return false
-	}
-	if errors.Is(db.Where("path = ? AND method = ?", "/authorityBtn/canRemoveAuthorityBtn", "POST").
-		First(&sysModel.SysApi{}).Error, gorm.ErrRecordNotFound) {
-		return false
-	}
-	return true
+	// db, ok := ctx.Value("db").(*gorm.DB)
+	// if !ok {
+	// 	return false
+	// }
+	// if errors.Is(db.Where("path = ? AND method = ?", "/authorityBtn/canRemoveAuthorityBtn", "POST").
+	// 	First(&sysModel.SysApi{}).Error, gorm.ErrRecordNotFound) {
+	// 	return false
+	// }
+	return false
 }

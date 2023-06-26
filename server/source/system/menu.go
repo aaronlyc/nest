@@ -91,12 +91,12 @@ func (i *initMenu) InitializeData(ctx context.Context) (next context.Context, er
 }
 
 func (i *initMenu) DataInserted(ctx context.Context) bool {
-	db, ok := ctx.Value("db").(*gorm.DB)
-	if !ok {
-		return false
-	}
-	if errors.Is(db.Where("path = ?", "autoPkg").First(&SysBaseMenu{}).Error, gorm.ErrRecordNotFound) { // 判断是否存在数据
-		return false
-	}
-	return true
+	// db, ok := ctx.Value("db").(*gorm.DB)
+	// if !ok {
+	// 	return false
+	// }
+	// if errors.Is(db.Where("path = ?", "autoPkg").First(&SysBaseMenu{}).Error, gorm.ErrRecordNotFound) { // 判断是否存在数据
+	// 	return false
+	// }
+	return false
 }

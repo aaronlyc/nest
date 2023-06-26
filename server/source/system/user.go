@@ -45,7 +45,7 @@ func (i *initUser) InitializeData(ctx context.Context) (next context.Context, er
 	if !ok {
 		return ctx, system.ErrMissingDBContext
 	}
-	password := utils.BcryptHash("123456")
+	// password := utils.BcryptHash("123456")
 	adminPassword := utils.BcryptHash("123456")
 
 	entities := []sysModel.SysUser{
@@ -59,16 +59,6 @@ func (i *initUser) InitializeData(ctx context.Context) (next context.Context, er
 			// Phone:       "17611111111",
 			// Email:       "333333333@qq.com",
 		},
-		{
-			UUID:     uuid.Must(uuid.NewV4()),
-			Username: "test",
-			Password: password,
-			NickName: "测试用户",
-			// HeaderImg:   "https:///qmplusimg.henrongyi.top/1572075907logo.png",
-			AuthorityId: 9528,
-			// Phone:       "17611111111",
-			// Email:       "333333333@qq.com"
-		},
 	}
 	if err = db.Create(&entities).Error; err != nil {
 		return ctx, errors.Wrap(err, sysModel.SysUser{}.TableName()+"表数据初始化失败!")
@@ -81,21 +71,19 @@ func (i *initUser) InitializeData(ctx context.Context) (next context.Context, er
 	if err = db.Model(&entities[0]).Association("Authorities").Replace(authorityEntities); err != nil {
 		return next, err
 	}
-	if err = db.Model(&entities[1]).Association("Authorities").Replace(authorityEntities[:1]); err != nil {
-		return next, err
-	}
 	return next, err
 }
 
 func (i *initUser) DataInserted(ctx context.Context) bool {
-	db, ok := ctx.Value("db").(*gorm.DB)
-	if !ok {
-		return false
-	}
-	var record sysModel.SysUser
-	if errors.Is(db.Where("username = ?", "a303176530").
-		Preload("Authorities").First(&record).Error, gorm.ErrRecordNotFound) { // 判断是否存在数据
-		return false
-	}
-	return len(record.Authorities) > 0 && record.Authorities[0].AuthorityId == 888
+	// db, ok := ctx.Value("db").(*gorm.DB)
+	// if !ok {
+	// 	return false
+	// }
+	// var record sysModel.SysUser
+	// if errors.Is(db.Where("username = ?", "a303176530").
+	// 	Preload("Authorities").First(&record).Error, gorm.ErrRecordNotFound) { // 判断是否存在数据
+	// 	return false
+	// }
+	// return len(record.Authorities) > 0 && record.Authorities[0].AuthorityId == 888
+	return false
 }
