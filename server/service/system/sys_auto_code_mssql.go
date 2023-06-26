@@ -1,9 +1,9 @@
 package system
 
 import (
+	"appnest/server/global"
+	"appnest/server/model/system/response"
 	"fmt"
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system/response"
 )
 
 var AutoCodeMssql = new(autoCodeMssql)

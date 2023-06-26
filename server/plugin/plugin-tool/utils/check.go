@@ -1,9 +1,9 @@
 package utils
 
 import (
+	"appnest/server/global"
+	"appnest/server/model/system"
 	"fmt"
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
 	"strconv"
 )
 

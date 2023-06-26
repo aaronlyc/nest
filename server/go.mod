@@ -1,4 +1,4 @@
-module github.com/flipped-aurora/gin-vue-admin/server
+module appnest/server
 
 go 1.18
 

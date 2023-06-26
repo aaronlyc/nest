@@ -1,11 +1,12 @@
 package initialize
 
 import (
+	"appnest/server/model/example"
+	sysModel "appnest/server/model/system"
+	"appnest/server/service/system"
 	"context"
+
 	adapter "github.com/casbin/gorm-adapter/v3"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/example"
-	sysModel "github.com/flipped-aurora/gin-vue-admin/server/model/system"
-	"github.com/flipped-aurora/gin-vue-admin/server/service/system"
 	"gorm.io/gorm"
 )
 

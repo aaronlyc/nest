@@ -4,10 +4,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/common/response"
-	"github.com/flipped-aurora/gin-vue-admin/server/service"
-	"github.com/flipped-aurora/gin-vue-admin/server/utils"
+	"appnest/server/global"
+	"appnest/server/model/common/response"
+	"appnest/server/service"
+	"appnest/server/utils"
+
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,6 +1,6 @@
 package system
 
-import "github.com/flipped-aurora/gin-vue-admin/server/service"
+import "appnest/server/service"
 
 type ApiGroup struct {
 	DBApi

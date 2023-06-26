@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	sysModel "github.com/flipped-aurora/gin-vue-admin/server/model/system"
-	"github.com/flipped-aurora/gin-vue-admin/server/service/system"
+	sysModel "appnest/server/model/system"
+	"appnest/server/service/system"
+
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 )

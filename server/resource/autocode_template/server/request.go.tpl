@@ -1,8 +1,8 @@
 package request
 
 import (
-	"github.com/flipped-aurora/gin-vue-admin/server/model/{{.Package}}"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
+	"appnest/server/model/{{.Package}}"
+	"appnest/server/model/common/request"
 	"time"
 )
 

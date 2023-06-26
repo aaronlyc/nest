@@ -1,11 +1,12 @@
 package system
 
 import (
+	"appnest/server/global"
+	"appnest/server/model/system"
+	"appnest/server/model/system/request"
+	"appnest/server/model/system/response"
 	"errors"
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system/request"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system/response"
+
 	"gorm.io/gorm"
 )
 

@@ -1,9 +1,9 @@
 package system
 
 import (
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system/request"
+	"appnest/server/global"
+	"appnest/server/model/system"
+	"appnest/server/model/system/request"
 )
 
 //@author: [piexlmax](https://github.com/piexlmax)

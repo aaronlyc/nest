@@ -1,15 +1,16 @@
 package system
 
 import (
+	"appnest/server/global"
+	"appnest/server/model/system"
+	"appnest/server/model/system/request"
 	"context"
 	"errors"
 	"fmt"
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system/request"
+	"strings"
+
 	"github.com/sashabaranov/go-openai"
 	"gorm.io/gorm"
-	"strings"
 )
 
 type ChatGptService struct{}

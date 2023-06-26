@@ -2,7 +2,7 @@
 package {{.Package}}
 
 import (
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
+	"appnest/server/global"
 	{{ if .HasTimer }}"time"{{ end }}
 	{{ if .HasFile }}"gorm.io/datatypes"{{ end }}
 )
